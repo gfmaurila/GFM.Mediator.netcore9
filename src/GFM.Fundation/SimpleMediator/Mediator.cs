@@ -17,12 +17,12 @@ public class Mediator : IMediator
         var handlerType = typeof(IRequestHandler<,>).MakeGenericType(request.GetType(), typeof(TResponse));
         var handler = _serviceProvider.GetRequiredService(handlerType);
 
-        var behaviors = _serviceProvider.GetServices(typeof(IPipelineBehavior<,>).MakeGenericType(request.GetType(), typeof(TResponse)))
-            .Cast<dynamic>().Reverse().ToList();
+        var pipelineBehaviors = typeof(IPipelineBehavior<,>).MakeGenericType(request.GetType(), typeof(TResponse));
+        var behaviors = _serviceProvider.GetServices(pipelineBehaviors).Cast<dynamic>().ToList();
 
         RequestHandlerDelegate<TResponse> handlerDelegate = () => ((dynamic)handler).Handle((dynamic)request, cancellationToken);
 
-        foreach (var behavior in behaviors)
+        foreach (var behavior in behaviors.Reverse<dynamic>())
         {
             var next = handlerDelegate;
             handlerDelegate = () => behavior.Handle((dynamic)request, cancellationToken, next);
@@ -31,11 +31,26 @@ public class Mediator : IMediator
         return await handlerDelegate();
     }
 
+    //public async Task Publish<TNotification>(TNotification notification, CancellationToken cancellationToken = default)
+    //where TNotification : INotification
+    //{
+    //    var handlers = _serviceProvider.GetServices<INotificationHandler<TNotification>>();
+
+    //    var tasks = handlers.Select(handler => handler.Handle(notification, cancellationToken));
+    //    await Task.WhenAll(tasks); // Executa todos os handlers em paralelo
+    //}
+
     public async Task Publish<TNotification>(TNotification notification, CancellationToken cancellationToken = default)
-        where TNotification : INotification
+    where TNotification : INotification
     {
-        var handlers = _serviceProvider.GetServices<INotificationHandler<TNotification>>();
-        var tasks = handlers.Select(h => h.Handle(notification, cancellationToken));
-        await Task.WhenAll(tasks);
+        var handlerType = typeof(INotificationHandler<>).MakeGenericType(notification.GetType());
+        var handlers = _serviceProvider.GetServices(handlerType);
+
+        foreach (var handler in handlers)
+        {
+            var handleMethod = handlerType.GetMethod("Handle");
+            await (Task)handleMethod.Invoke(handler, new object[] { notification, cancellationToken });
+        }
     }
+
 }

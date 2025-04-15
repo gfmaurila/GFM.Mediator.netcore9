@@ -11,6 +11,8 @@ class Program
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ExceptionHandlingBehavior<,>));
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
         services.AddScoped<IValidator<CreateOrderCommand>, CreateOrderValidator>();
+
+        
         services.AddScoped<IRequestHandler<CreateOrderCommand, string>, CreateOrderHandler>();
         services.AddScoped<INotificationHandler<OrderCreatedNotification>, SendEmailOnOrderCreated>();
         services.AddScoped<INotificationHandler<OrderCreatedNotification>, SaveLogOnOrderCreated>();
