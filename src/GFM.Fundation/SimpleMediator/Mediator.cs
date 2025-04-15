@@ -31,15 +31,6 @@ public class Mediator : IMediator
         return await handlerDelegate();
     }
 
-    //public async Task Publish<TNotification>(TNotification notification, CancellationToken cancellationToken = default)
-    //where TNotification : INotification
-    //{
-    //    var handlers = _serviceProvider.GetServices<INotificationHandler<TNotification>>();
-
-    //    var tasks = handlers.Select(handler => handler.Handle(notification, cancellationToken));
-    //    await Task.WhenAll(tasks); // Executa todos os handlers em paralelo
-    //}
-
     public async Task Publish<TNotification>(TNotification notification, CancellationToken cancellationToken = default)
     where TNotification : INotification
     {

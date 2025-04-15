@@ -98,6 +98,11 @@ dotnet test
 
 ---
 
+## Teste feito 
+
+![alt text](Teste Console.png)
+
+
 ## 📫 Como contribuir
 
 Pull requests são bem-vindos! Sinta-se à vontade para propor melhorias, ajustes ou abrir uma issue.

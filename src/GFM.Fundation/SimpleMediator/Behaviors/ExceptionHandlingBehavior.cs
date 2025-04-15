@@ -17,7 +17,7 @@ public class ExceptionHandlingBehavior<TRequest, TResponse> : IPipelineBehavior<
         catch (ValidationException ex)
         {
             Console.WriteLine($"[VALIDAÇÃO] {ex.Message}");
-            throw; // Pode-se lançar direto ou transformar em um retorno customizado
+            throw; 
         }
         catch (Exception ex)
         {
