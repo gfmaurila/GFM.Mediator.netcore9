@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "GFM.Fundation.Batch": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
