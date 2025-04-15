@@ -98,9 +98,3 @@ Pull requests são bem-vindos! Sinta-se à vontade para propor melhorias, ajuste
 [![Linkedin Badge](https://img.shields.io/badge/-Guilherme_Figueiras_Maurila-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/guilherme-maurila)](https://www.linkedin.com/in/guilherme-maurila)  
 [![Gmail Badge](https://img.shields.io/badge/-gfmaurila@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:gfmaurila@gmail.com)](mailto:gfmaurila@gmail.com)
 
----
-
-## 📂 Licença
-
-Este projeto está licenciado sob a licença MIT.  
-Sinta-se livre para usar em projetos comerciais ou educacionais.
