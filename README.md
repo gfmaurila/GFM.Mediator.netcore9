@@ -100,7 +100,7 @@ dotnet test
 
 ## Teste feito 
 
-![alt text](Teste Console.png)
+![alt text](image.png)
 
 
 ## 📫 Como contribuir
